@@ -1,6 +1,6 @@
 
 
-
+# here we are calling ami from ec2 instance
  # this data block we can use to pull the ami id from ec2
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -18,6 +18,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+# here we are using data source to call ami to creacte instance 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
@@ -26,7 +27,9 @@ resource "aws_instance" "web" {
     Name = "HelloWorld"
   }
 }
- #second block   this will pull ami id from aws and wi can use to create instance
+
+# here we are calling ami from ec2 instance
+#second block   this will pull ami id from aws and wi can use to create instance
 data "aws_ami" "amz" {
   most_recent = true
 
@@ -43,14 +46,9 @@ data "aws_ami" "amz" {
   owners = ["amazon"] # Canonical
 }
 
-resource "aws_instance" "web1" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
 
-  tags = {
-    Name = "HelloWorld"
-  }
-}
+
+# here we are using data source to call ami to creacte instance 
 # to create amz ec2 instance
 resource "aws_instance" "server2" {
   ami = data.aws_ami.amz.id
