@@ -8,7 +8,7 @@ provider "aws" {
   instance_id = "i-054d428c6ea152799"  # this block help us to pull inform from aws instance that we created manually
 }                                      # this instance id i copy it manually and past here . with this i can pull key name, securty-group etc
 
-#bellow are the resouce i want terraform to use data source and pull for me
+#bellow are the resouce i want terraform to use data source and pull for me. #this resource block below we are assigning it to use the above block-code and pull this formation for me
 resource "aws_instance" "server1" {
   ami = data.aws_instance.dev.ami
   instance_type = data.aws_instance.dev.instance_type
